@@ -1,3 +1,5 @@
+import styles from "./Sidebar.module.css";
+
 type Props = {
   view: string;
   setView: (v: any) => void;
@@ -8,34 +10,33 @@ type Props = {
 
 export default function Sidebar({ view, setView, theme, setTheme }: Props) {
   return (
-    <div className="sidebar shadow-sm">
-
-      <h4 className="fw-bold mb-2">TaskFlow</h4>
+    <div className={styles.sidebar}>
+      <h4 className={styles.title}>TaskFlow</h4>
 
       <button
-        className={`list-btn add-task-menu ${view==="add" && "active"}`}
+        className={`${styles.listBtn} ${styles.addBtn} ${view==="add" ? styles.active : ""}`}
         onClick={() => setView("add")}
       >
         + Add Task
       </button>
 
-     
-      <button
-        className={`list-btn ${view==="all" && "active"}`}
-        onClick={() => setView("all")}
-      >
+      <button className={`${styles.listBtn} ${view==="all" ? styles.active : ""}`}
+        onClick={() => setView("all")}>
         All Tasks
       </button>
 
-      <button className={`list-btn ${view==="today" && "active"}`} onClick={()=>setView("today")}>
+      <button className={`${styles.listBtn} ${view==="today" ? styles.active : ""}`}
+        onClick={() => setView("today")}>
         Today
       </button>
 
-      <button className={`list-btn ${view==="upcoming" && "active"}`} onClick={()=>setView("upcoming")}>
+      <button className={`${styles.listBtn} ${view==="upcoming" ? styles.active : ""}`}
+        onClick={() => setView("upcoming")}>
         Upcoming
       </button>
 
-      <button className={`list-btn ${view==="completed" && "active"}`} onClick={()=>setView("completed")}>
+      <button className={`${styles.listBtn} ${view==="completed" ? styles.active : ""}`}
+        onClick={() => setView("completed")}>
         Completed
       </button>
 
@@ -45,7 +46,6 @@ export default function Sidebar({ view, setView, theme, setTheme }: Props) {
       >
         {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
       </button>
-
     </div>
   );
 }

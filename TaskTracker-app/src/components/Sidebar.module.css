@@ -1,0 +1,38 @@
+.sidebar {
+  width: 280px;
+  background: var(--panel);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-right: 1px solid var(--border);
+}
+
+.title {
+  font-weight: 700;
+}
+
+.listBtn {
+  border: none;
+  background: none;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-weight: 500;
+  color: var(--text);
+  transition: 0.2s;
+}
+
+.listBtn:hover {
+  background: var(--hover);
+}
+
+.active {
+  background: rgba(13,110,253,.15);
+  color: var(--accent);
+}
+
+.addBtn {
+  color: var(--accent);
+  font-weight: 600;
+}

@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import TaskPanel from "./components/TaskPanel";
 import AddTask from "./components/AddTask";
 import type { Task } from "./types";
+import styles from "./App.module.css";
 
 function addDays(base: string, n: number) {
   const d = new Date(base);
@@ -22,10 +23,9 @@ export default function App() {
   const todayStr = new Date().toISOString().split("T")[0];
 
 
-
   useEffect(() => {
-    const saved = localStorage.getItem("theme") as any;
-    if (saved) setTheme(saved);
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark") setTheme("dark");
   }, []);
 
   useEffect(() => {
@@ -33,7 +33,6 @@ export default function App() {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  
 
   useEffect(() => {
     async function fetchDefaultTasks() {
@@ -44,7 +43,7 @@ export default function App() {
         id: t.id,
         text: t.todo,
         done: t.completed,
-        dueDate: addDays(todayStr, i % 3) 
+        dueDate: addDays(todayStr, i % 3)
       }));
 
       setTasks(mapped);
@@ -53,7 +52,6 @@ export default function App() {
     fetchDefaultTasks();
   }, [todayStr]);
 
- 
 
   function addTask(text: string, dueDate: string) {
     setTasks(prev => [
@@ -82,10 +80,9 @@ export default function App() {
     setTasks(prev => prev.filter(t => t.id !== id));
   }
 
- 
 
   return (
-    <div className="app-layout">
+    <div className={styles.appLayout}>
       <Sidebar
         view={view}
         setView={setView}
@@ -95,8 +92,8 @@ export default function App() {
       />
 
       {view === "add" ? (
-        <div className="task-panel">
-          <h3 className="mb-4">Add Task</h3>
+        <div className={styles.addView}>
+          <h3 className={styles.addTitle}>Add Task</h3>
 
           <AddTask
             addTask={(text: string, date: string) => {

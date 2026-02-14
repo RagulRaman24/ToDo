@@ -1,5 +1,6 @@
 import TaskItem from "./TaskItem";
 import type { Task } from "../types";
+import styles from "./TaskPanel.module.css";
 
 type Props = {
   view: "all" | "today" | "upcoming" | "completed";
@@ -28,26 +29,21 @@ export default function TaskPanel({
   checkingIds
 }: Props) {
 
-  /* ===== NORMAL FILTERS ===== */
-
   if (view !== "all") {
     let filtered: Task[] = [];
 
-    if (view === "today") {
+    if (view === "today")
       filtered = tasks.filter(t => !t.done && t.dueDate === todayStr);
-    }
 
-    if (view === "upcoming") {
+    if (view === "upcoming")
       filtered = tasks.filter(t => !t.done && t.dueDate > todayStr);
-    }
 
-    if (view === "completed") {
+    if (view === "completed")
       filtered = tasks.filter(t => t.done);
-    }
 
     return (
-      <div className="task-panel">
-        <h3 className="mb-4 text-capitalize">{view}</h3>
+      <div className={styles.taskPanel}>
+        <h3 className={styles.title}>{view}</h3>
 
         {filtered.map(t => (
           <TaskItem
@@ -63,7 +59,6 @@ export default function TaskPanel({
   }
 
   const groups: Record<string, Task[]> = {};
-
   tasks.forEach(t => {
     if (!groups[t.dueDate]) groups[t.dueDate] = [];
     groups[t.dueDate].push(t);
@@ -72,15 +67,14 @@ export default function TaskPanel({
   const sortedDates = Object.keys(groups).sort();
 
   return (
-    <div className="task-panel">
-      <h3 className="mb-4">All Tasks</h3>
+    <div className={styles.taskPanel}>
+      <h3 className={styles.title}>All Tasks</h3>
 
-      <div className="day-board">
-
+      <div className={styles.dayBoard}>
         {sortedDates.map(date => (
-          <div key={date} className="day-column">
+          <div key={date} className={styles.dayColumn}>
 
-            <div className="day-header">
+            <div className={styles.dayHeader}>
               {dayLabel(date)}
             </div>
 
@@ -96,7 +90,6 @@ export default function TaskPanel({
 
           </div>
         ))}
-
       </div>
     </div>
   );

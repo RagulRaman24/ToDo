@@ -1,0 +1,34 @@
+.taskPanel {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  background: var(--bg);
+}
+
+.title {
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-transform: capitalize;
+  color: var(--text);
+}
+
+.dayBoard {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+}
+
+.dayColumn {
+  flex: 0 0 340px;
+  max-width: 340px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.dayHeader {
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--accent);
+}

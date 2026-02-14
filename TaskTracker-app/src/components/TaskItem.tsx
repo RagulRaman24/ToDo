@@ -1,4 +1,5 @@
 import type { Task } from "../types";
+import styles from "./TaskItem.module.css";
 
 type Props = {
   task: Task;
@@ -13,22 +14,23 @@ export default function TaskItem({
   deleteTask,
   checking
 }: Props) {
+  const done = task.done || checking;
+
   return (
-    <div className="card task-card shadow-sm mb-3">
-      <div className="card-body d-flex align-items-center gap-3">
+    <div className={`${styles.taskCard} card shadow-sm mb-3`}>
+      <div className={`card-body d-flex align-items-center gap-3 ${styles.body}`}>
 
         <input
           type="checkbox"
-          checked={task.done || checking}
+          checked={done}
           onChange={() => toggleTask(task.id)}
         />
 
         <span
-          className={`flex-grow-1 ${
-            task.done || checking
-              ? "text-decoration-line-through text-muted"
-              : ""
-          }`}
+          className={`${styles.text} ${done ? styles.completedText : ""}`}
+          style={{
+            textDecoration: done ? "line-through" : "none"
+          }}
         >
           {task.text}
         </span>

@@ -1,19 +1,25 @@
 import { useState } from "react";
+import styles from "./AddTask.module.css";
 
 export default function AddTask({ addTask }: any) {
   const [text, setText] = useState("");
+
   const [dateMode, setDateMode] = useState<"today"|"tomorrow"|"custom">("today");
   const [customDate, setCustomDate] = useState("");
 
+  
   function getDueDate() {
+  
     const d = new Date();
 
-    if (dateMode === "today") {
-      return d.toISOString().split("T")[0]; 
-    }
+    if (dateMode === "today")
+   
+      return d.toISOString().split("T")[0];
 
-    if (dateMode === "tomorrow") {
+   
+      if (dateMode === "tomorrow") {
       d.setDate(d.getDate() + 1);
+   
       return d.toISOString().split("T")[0];
     }
 
@@ -27,19 +33,19 @@ export default function AddTask({ addTask }: any) {
   }
 
   return (
-    <div className="add-task-box">
+    <div className={styles.addTaskBox}>
 
       <input
-        className="form-control"
+        className={`form-control ${styles.input}`}
         placeholder="Add task..."
         value={text}
         onChange={e => setText(e.target.value)}
       />
 
-      <div className="date-row">
+      <div className={styles.dateRow}>
 
         <select
-          className="form-select"
+          className={`form-select ${styles.select}`}
           value={dateMode}
           onChange={e => setDateMode(e.target.value as any)}
         >
@@ -51,12 +57,15 @@ export default function AddTask({ addTask }: any) {
         {dateMode === "custom" && (
           <input
             type="date"
-            className="form-control"
+            className={`form-control ${styles.input}`}
             onChange={e => setCustomDate(e.target.value)}
           />
         )}
 
-        <button className="btn btn-primary" onClick={handleAdd}>
+        <button
+          className={`btn btn-primary ${styles.addButton}`}
+          onClick={handleAdd}
+        >
           Add
         </button>
 
