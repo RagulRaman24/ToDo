@@ -1,0 +1,20 @@
+.appLayout {
+  display: flex;
+  height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.addView {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--bg);
+}
+
+.addTitle {
+  font-weight: 700;
+  margin-bottom: 24px;
+}

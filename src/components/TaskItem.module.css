@@ -1,0 +1,29 @@
+.card.taskCard {
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transition: 0.25s;
+}
+
+.card.taskCard:hover {
+  transform: translateY(-3px);
+}
+
+.card.taskCard .card-body {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.text {
+  flex: 1;
+  color: var(--text);
+  word-break: break-word;
+}
+
+.completedText {
+  color: var(--muted);
+  opacity: 0.9;
+}
